@@ -1,0 +1,30 @@
+{
+  "fileName": "patient",
+  "key": "patient_id",
+  "applyDistinct": false,
+  "links": [
+    {
+      "joinKeys": {
+        "logicalOperator": "",
+        "joinKeyFields": [
+          "patient_id"
+        ]
+      },
+      "fileName": "patient",
+      "fileNameTarget": "appointment",
+      "joinType": "INNER"
+    }
+  ],
+  "fields": [
+    {
+      "name": "patient_id",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "first_name",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    }
+  ]
+}

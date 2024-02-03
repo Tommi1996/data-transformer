@@ -1,0 +1,13 @@
+{
+  "A" : [
+    "string"
+  ],
+  "N" : [
+    "int",
+    "float",
+    "number"
+  ],
+  "D": [
+    "date"
+  ]
+}
