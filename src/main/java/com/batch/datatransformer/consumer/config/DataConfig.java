@@ -11,6 +11,9 @@ public class DataConfig {
     @Value("${csv.delimiter}")
     private String csvDelimiter;
 
+    @Value("${force.not.join}")
+    private Boolean forceNotJoin;
+
     private String datasetName;
 
     public String getDatasetName() {
@@ -27,5 +30,9 @@ public class DataConfig {
 
     public String getCsvDelimiter() {
         return csvDelimiter;
+    }
+
+    public Boolean getForceNotJoin() {
+        return forceNotJoin;
     }
 }

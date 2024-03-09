@@ -43,6 +43,12 @@ public class ConsumerUtil {
                 .collect(Collectors.toList());
     }
 
+    public List<FieldConfig> getColumnTracker(FileConfig singleFileConfig) {
+        return singleFileConfig.getFields().stream()
+                        .map(y -> new FieldConfig(singleFileConfig.getFileName().toUpperCase() + "." + y.getName().toUpperCase(),
+                                y.getType(), y.getLogicalFormatterFunc())).collect(Collectors.toList());
+    }
+
     public String getTranscodedFieldType(String fieldType, String tsFilePath, Logger logger) throws IOException {
         TypeSupported ts = new TypeSupported();
         ts.setTypeSupported(JsonUtil.jsonReader(DataTransformerApplication.getContextFilePath(tsFilePath), logger));

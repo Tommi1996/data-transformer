@@ -2,6 +2,7 @@ package com.batch.datatransformer.consumer.utils;
 
 import com.batch.datatransformer.DataTransformerApplication;
 import com.batch.datatransformer.consumer.config.DataConfig;
+import com.batch.datatransformer.consumer.model.FileConfig;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -51,5 +52,10 @@ public class PipelineUtil {
                 logger.error("Error writing output file: " + ex);
             }
         }
+    }
+
+    public boolean allLinksNotEmpty(List<FileConfig> config) {
+        return config.stream()
+                .allMatch(x -> x.getLinks() != null && !x.getLinks().isEmpty());
     }
 }

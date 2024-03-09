@@ -1,0 +1,66 @@
+{
+  "fileName": "results",
+  "key": "",
+  "applyDistinct": false,
+  "links": [],
+  "filterConditionConfigs": [
+    {
+      "conditionKey": "12345",
+      "logicalOperator": "",
+      "conditions": [
+        {
+          "fieldKey": "home_team",
+          "comparisonOperator": "=",
+          "fieldValue": "Italy"
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "name": "date",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "home_team",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "away_team",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "home_score",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "away_score",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "tournament",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "city",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "neutral",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    }
+  ]
+}

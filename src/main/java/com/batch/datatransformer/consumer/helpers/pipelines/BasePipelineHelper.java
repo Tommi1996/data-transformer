@@ -1,8 +1,12 @@
 package com.batch.datatransformer.consumer.helpers.pipelines;
 
+import com.batch.datatransformer.consumer.config.DataConfig;
 import com.batch.datatransformer.consumer.helpers.functionalities.basic.*;
 import com.batch.datatransformer.consumer.helpers.functionalities.custom.format.FormatMethods;
 import com.batch.datatransformer.consumer.interfaces.PipelineInterface;
+import com.batch.datatransformer.consumer.model.FieldConfig;
+import com.batch.datatransformer.consumer.model.FileConfig;
+import com.batch.datatransformer.consumer.utils.ConsumerUtil;
 import com.batch.datatransformer.consumer.utils.PipelineUtil;
 import com.batch.datatransformer.datasource.model.DataSource;
 import org.slf4j.Logger;
@@ -31,13 +35,19 @@ public class BasePipelineHelper implements PipelineInterface {
 
     private final PipelineUtil pipelineUtil;
 
-    public BasePipelineHelper(CombinerManagerHelper combinerManagerHelper, MapperManagerHelper mapperManagerHelper, LogicalFormatterManagerHelper logicalFormatterManagerHelper, FilterManagerHelper filterManagerHelper, GrouperManagerHelper grouperManagerHelper, PipelineUtil pipelineUtil) {
+    private final DataConfig dataConfig;
+
+    private final ConsumerUtil cu;
+
+    public BasePipelineHelper(CombinerManagerHelper combinerManagerHelper, MapperManagerHelper mapperManagerHelper, LogicalFormatterManagerHelper logicalFormatterManagerHelper, FilterManagerHelper filterManagerHelper, GrouperManagerHelper grouperManagerHelper, PipelineUtil pipelineUtil, DataConfig dataConfig, ConsumerUtil cu) {
         this.combinerManagerHelper = combinerManagerHelper;
         this.mapperManagerHelper = mapperManagerHelper;
         this.logicalFormatterManagerHelper = logicalFormatterManagerHelper;
         this.filterManagerHelper = filterManagerHelper;
         this.grouperManagerHelper = grouperManagerHelper;
         this.pipelineUtil = pipelineUtil;
+        this.dataConfig = dataConfig;
+        this.cu = cu;
     }
 
     @Override
@@ -55,19 +65,48 @@ public class BasePipelineHelper implements PipelineInterface {
             inputDataMapped = grouperManagerHelper
                     .distinctOnHashmap(inputDataMapped, dataSource.getConfig());
 
-            //Combine
-            List<Map<String, Object>> resultDataObject = combinerManagerHelper
-                    .joinData(inputDataMapped, dataSource.getConfig());
+            List<FileConfig> configs = dataSource.getConfig();
 
-            //Logical formatting
-            resultDataObject = logicalFormatterManagerHelper
-                    .performLogicalFormatting(resultDataObject, dataSource.getConfig(), FormatMethods.class);
+            boolean join = configs.size() > 1 && pipelineUtil.allLinksNotEmpty(configs) && !dataConfig.getForceNotJoin();
 
-            String dt = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
-            String fileName = "out-" + dt + ".csv";
+            List<Map<String, Object>> resultDataObject;
+            List<FieldConfig> lfc;
 
-            pipelineUtil.produceOutputCsv(resultDataObject, fileName, logger);
+            if(join) {
+                resultDataObject = combinerManagerHelper
+                        .joinData(inputDataMapped, dataSource.getConfig());
 
+                lfc = cu.getColumnTracker(dataSource.getConfig()).stream()
+                        .flatMap(List::stream)
+                        .filter(x -> !x.getLogicalFormatterFunc().isEmpty())
+                        .toList();
+
+                //Logical formatting
+                resultDataObject = logicalFormatterManagerHelper
+                        .performLogicalFormatting(resultDataObject, lfc, FormatMethods.class);
+
+                String dt = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+                String fileName = dataConfig.getDatasetName() + "-out-" + dt + ".csv";
+
+                pipelineUtil.produceOutputCsv(resultDataObject, fileName, logger);
+            } else {
+                for (int i = 0; i < inputDataMapped.size(); i++) {
+                    FileConfig config = dataSource.getConfig().get(i);
+                    List<Map<String, Object>> item = inputDataMapped.get(i);
+
+                    lfc = cu.getColumnTracker(config).stream()
+                            .filter(x -> !x.getLogicalFormatterFunc().isEmpty())
+                            .toList();
+
+                    item = logicalFormatterManagerHelper
+                            .performLogicalFormatting(item, lfc, FormatMethods.class);
+
+                    String dt = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+                    String fileName = dataConfig.getDatasetName() + "-" + config.getFileName() + "-out-" + dt + ".csv";
+
+                    pipelineUtil.produceOutputCsv(item, fileName, logger);
+                }
+            }
         } catch (Exception | Error e) {
             if (e instanceof Exception)
                 throw new Exception(e);

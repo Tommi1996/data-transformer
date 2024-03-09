@@ -28,14 +28,9 @@ public class LogicalFormatterManagerHelper implements LogicalFormatterManagerInt
     }
 
     public <T> List<Map<String, Object>> performLogicalFormatting(List<Map<String, Object>> resultDataObject,
-                                                              List<FileConfig> config,
+                                                              List<FieldConfig> lfc,
                                                               Class<T> methodHelperClass) throws Exception, Error {
         boolean atLeastOneLogicalFormatFunc = false;
-
-        List<FieldConfig> lfc = cu.getColumnTracker(config).stream()
-                .flatMap(List::stream)
-                .filter(x -> !x.getLogicalFormatterFunc().isEmpty())
-                .toList();
 
         if (!lfc.isEmpty()) {
 
