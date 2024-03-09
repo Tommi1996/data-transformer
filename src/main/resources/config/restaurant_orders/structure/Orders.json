@@ -1,0 +1,83 @@
+{
+  "fileName": "Orders",
+  "key": "Order_ID",
+  "applyDistinct": false,
+  "links": [
+    {
+      "joinKeys": {
+        "logicalOperator": "",
+        "joinKeyFields": [
+          "Restaurant_ID"
+        ]
+      },
+      "fileName": "Orders",
+      "fileNameTarget": "Restaurants",
+      "joinType": "INNER"
+    }
+  ],
+  "filterConditionConfigs": [
+    {
+      "conditionKey": "12345",
+      "logicalOperator": "",
+      "conditions": [
+        {
+          "fieldKey": "Payment_Mode",
+          "comparisonOperator": "=",
+          "fieldValue": "Credit Card"
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "name": "Order_ID",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Customer_Name",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Restaurant_ID",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Order_Date",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Quantity_Of_Items",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Order_Amount",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Payment_Mode",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Delivery_Time_Taken_Mins",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Customer_Rating_Food",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Customer_Rating_Delivery",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    }
+  ]
+}

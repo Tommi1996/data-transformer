@@ -1,0 +1,58 @@
+{
+  "fileName": "Restaurants",
+  "key": "Restaurant_ID",
+  "applyDistinct": true,
+  "links": [
+    {
+      "joinKeys": {
+        "logicalOperator": "",
+        "joinKeyFields": [
+          "Restaurant_ID"
+        ]
+      },
+      "fileName": "Restaurants",
+      "fileNameTarget": "Orders",
+      "joinType": "INNER"
+    }
+  ],
+  "filterConditionConfigs": [
+    {
+      "conditionKey": "12345",
+      "logicalOperator": "",
+      "conditions": [
+        {
+          "fieldKey": "Cuisine",
+          "comparisonOperator": "=",
+          "fieldValue": "French"
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "name": "Restaurant_ID",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Restaurant_Name",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Cuisine",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Zone",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    },
+    {
+      "name": "Category",
+      "type": "string",
+      "logicalFormatterFunc": ""
+    }
+  ]
+}
