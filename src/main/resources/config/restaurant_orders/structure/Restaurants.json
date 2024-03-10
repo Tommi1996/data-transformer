@@ -31,28 +31,23 @@
   "fields": [
     {
       "name": "Restaurant_ID",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Restaurant_Name",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Cuisine",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Zone",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Category",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     }
   ]
 }

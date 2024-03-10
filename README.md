@@ -24,7 +24,6 @@ There are some basic fields to configure inside json files related to each entit
 - **fields:** array of object defining fields properties. Each object will define
   - **name:** the name of the field.
   - **type:** the type of the field. It can assume the following values: **string**, **numeric**, **date**.
-  - **logicalFormatterFunc (Optional):** custom function to manipulate the value of the field, described later.
   
 Below an example of **fields** array configuration:
 
@@ -33,13 +32,11 @@ Below an example of **fields** array configuration:
   "fields": [
     {
       "name": "Order_ID",
-      "type": "numeric",
-      "logicalFormatterFunc": ""
+      "type": "numeric"
     },
     {
       "name": "Customer_Name",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     }
   ]
 }
@@ -153,14 +150,12 @@ Below the field doc for **filterLinkConfigs**:
 - **targetConditionKey:** the condition ID of the item that you want to concatenate with defined in the **filterConditionConfigs** array.
 - **logicalOperator:** can be "AND" or "OR" and defines how the filters should be concatenated.
 
-## Field Logical Formatting
-
 ## Run the application
 
 Below an example of the instruction to run the application as jar, passing **datasetName** as program argument:
 
 ```shell
-java -jar ./target/data-transformer-0.0.1-SNAPSHOT.jar --datasetName=restaurant_orders
+java -jar [JAR_PATH]/data-transformer-0.0.1-SNAPSHOT.jar --datasetName=restaurant_orders
 ```
 
 The output will be produced as csv file into **/output** directory.

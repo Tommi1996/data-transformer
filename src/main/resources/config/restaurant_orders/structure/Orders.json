@@ -31,53 +31,43 @@
   "fields": [
     {
       "name": "Order_ID",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Customer_Name",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Restaurant_ID",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Order_Date",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Quantity_Of_Items",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Order_Amount",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Payment_Mode",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Delivery_Time_Taken_Mins",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Customer_Rating_Food",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "Customer_Rating_Delivery",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     }
   ]
 }

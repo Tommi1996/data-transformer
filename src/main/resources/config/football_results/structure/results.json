@@ -19,48 +19,39 @@
   "fields": [
     {
       "name": "date",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "home_team",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "away_team",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "home_score",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "away_score",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "tournament",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "city",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
       "name": "country",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "type": "string"
     },
     {
-      "name": "neutral",
-      "type": "string",
-      "logicalFormatterFunc": ""
+      "name": "neutral"
+      "type": "string"
     }
   ]
 }
