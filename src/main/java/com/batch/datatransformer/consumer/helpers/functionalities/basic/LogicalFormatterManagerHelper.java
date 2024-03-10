@@ -2,7 +2,6 @@ package com.batch.datatransformer.consumer.helpers.functionalities.basic;
 
 import com.batch.datatransformer.consumer.interfaces.LogicalFormatterManagerInterface;
 import com.batch.datatransformer.consumer.model.FieldConfig;
-import com.batch.datatransformer.consumer.model.FileConfig;
 import com.batch.datatransformer.consumer.utils.ConsumerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
